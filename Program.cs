@@ -13,9 +13,10 @@ namespace compare_algorithm
             int[] MyArray = CreateArray(size, n);
             for (int i = 0; i < MyArray.Length; i++)
             {
-                Console.Write(MyArray[i]);
+                Console.WriteLine(MyArray[i]);
                 Console.Write(",");
             }
+            menu(MyArray);
         }
         static int[] CreateArray(int size, Random r)
         {
@@ -45,11 +46,11 @@ namespace compare_algorithm
             {
                 Console.WriteLine("What number do you want to find");
                 int NumToFind = Convert.ToInt32(Console.ReadLine());
-                BinarySearch(array, NumToFind);
+                //BinarySearch(array, NumToFind);
             }
             else if (option == 3)
             {
-
+                BubbleSort(array);
             }
             else if (option == 4)
             {
@@ -67,7 +68,30 @@ namespace compare_algorithm
         
         static void BubbleSort(int[] a)
         {
-            
+            int temp = 0;
+            bool swap = false;
+            int passes = 0;
+            do
+            {
+                swap = false;
+                for (int i = 0; i < a.Length - 1; i++)
+                {
+                    passes++;
+                    if (a[i] > a[i + 1])
+                    {
+                        a[i] = temp;
+                        a[i] = a[i + 1];
+                        a[i + 1] = temp;
+                        swap = true;
+                    }
+                }
+            } while (swap = false);
+            Console.WriteLine($"It took {passes} passes.");
+            Console.WriteLine("Your sorted array is:");
+            for (int i = 0; i > a.Length; i++)
+            {
+                Console.WriteLine(a[i]);
+            }
         }
         static void Merge(int[] a, int low, int mid, int high)
         {
@@ -123,16 +147,22 @@ namespace compare_algorithm
                 Merge(a, low, mid, high);
             }
         }
-        static bool LinearSearch(int[] a, int numToFind)
+        static int LinearSearch(int[] a, int numToFind)
         {
-            bool result = false;
-            return result;
+            int index = 0;
+            for (int i = 0; i >= a.Length; i++)
+            {
+                if (a[i] == numToFind)
+                {
+                    index = i;
+                }
+            }
+            Console.WriteLine($"Your number is at index {index}");
+            return index;
         }
-        static bool BinarySearch(int[] a, int numToFind)
-        {
-            bool result = false;
-            return result;
-        }
+       // static bool BinarySearch(int[] a, int numToFind)
+        //{
+        //}
             
     }
 }
